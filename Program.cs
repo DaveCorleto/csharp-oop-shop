@@ -27,7 +27,22 @@ namespace csharp_oop_shop
 
     public class Product
     {
-        public int Code;
+        private int code;
+        public int Code { 
+            get { return code; }
+        }
+        //private int velocità;
+        //public int Velocità
+        //{
+        //    get
+        //    {
+        //        return velocità;
+        //    }
+        //    set
+        //    {
+        //        velocità = value;
+        //    }
+        //}
         public string Name;
         public string Description;
         public decimal Price;
@@ -35,7 +50,7 @@ namespace csharp_oop_shop
 
         public Product(string name, string description, decimal price, int iva)
         {
-            this.Code = GeneraCodeRandom();
+            this.code = GeneraCodeRandom();
             this.Name = name;
             this.Description = description;
             this.Price = price;
@@ -61,16 +76,8 @@ namespace csharp_oop_shop
 
 
 
-    //    Nel progetto csharp-oop-shop, creare la classe Prodotto che gestisce i prodotti dello shop.
-    //Un prodotto è caratterizzato da:
-    //- codice (numero intero)
-    //- nome
-    //- descrizione
-    //- prezzo
-    //- iva
+
     //Usate opportunamente i livelli di accesso (public, private), i costruttori, i metodi getter e setter ed eventuali altri metodi di “utilità” per fare in modo che:
-    //alla creazione di un nuovo prodotto il codice sia valorizzato con un numero random
-    //Il codice prodotto sia accessibile solo in lettura
     //    Gli altri attributi siano accessibili sia in lettura che in scrittura
     //Il prodotto esponga sia un metodo per avere il prezzo base che uno per avere il prezzo comprensivo di iva
     //Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome

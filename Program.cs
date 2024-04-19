@@ -27,6 +27,11 @@ namespace csharp_oop_shop
             Console.WriteLine(Product.BasicPrice(guitar.Price));
             Console.WriteLine("Il prezzo ivato della Fender Mustang è: ");
             Console.WriteLine(Product.GeneraPriceIva(guitar.Price,guitar.Iva));
+
+            Console.WriteLine("Proviamo la Funzione Nome esteso: ");
+            Console.WriteLine(Product.GeneraNomeEsteso(guitar.Code, guitar.Name));
+            Console.WriteLine(Product.GeneraNomeEsteso(book.Code, book.Name));
+            Console.WriteLine(Product.GeneraNomeEsteso(headphones.Code, headphones.Name));
         }
     }
 
@@ -77,6 +82,13 @@ namespace csharp_oop_shop
              decimal PriceIva = (Price / 100) * (100 + Iva);
              return PriceIva;
         }
+
+        public static string GeneraNomeEsteso(int Code, string Name)
+        {
+            string CodeString = Convert.ToString(Code);
+            string ExtendedName = $"{CodeString} - {Name}";
+            return ExtendedName;
+        }
     }
 
 
@@ -85,7 +97,7 @@ namespace csharp_oop_shop
 
     //Usate opportunamente i livelli di accesso (public, private), i costruttori, i metodi getter e setter ed eventuali altri metodi di “utilità” per fare in modo che:
     //    Gli altri attributi siano accessibili sia in lettura che in scrittura
-    //Il prodotto esponga sia un metodo per avere il prezzo base che uno per avere il prezzo comprensivo di iva
+
     //Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome
     //    Testate poi i vostri oggetti Prodotto, istanziandoli e provando ad interargirci per testare tutti i metodi che avete previsto.
     //BONUS:

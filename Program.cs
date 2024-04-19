@@ -16,12 +16,17 @@ namespace csharp_oop_shop
 
             // Creazione di istanze di Product
             Product book = new Product("La Nave di Teseo", "Bellissimo libro", 17.99m, 22);
-            Product guitar = new Product("Fender Mustang", "La chitarra di Kurt", 1345, 99);
-            Product headphones = new Product("Beyerdynamic DT770PRO", "Cuffie da studio", 139, 99);
+            Product guitar = new Product("Fender Mustang", "La chitarra di Kurt", 1345, 23);
+            Product headphones = new Product("Beyerdynamic DT770PRO", "Cuffie da studio", 139, 20);
 
             Console.WriteLine(book.Code);
             Console.WriteLine(guitar.Code);
             Console.WriteLine(headphones.Code);
+
+            Console.WriteLine("Il prezzo base della Fender Mustang è: ");
+            Console.WriteLine(Product.BasicPrice(guitar.Price));
+            Console.WriteLine("Il prezzo ivato della Fender Mustang è: ");
+            Console.WriteLine(Product.GeneraPriceIva(guitar.Price,guitar.Iva));
         }
     }
 
@@ -62,16 +67,17 @@ namespace csharp_oop_shop
             Random random = new Random();
             return random.Next(100000, 999999);
         }
+
+        public static decimal BasicPrice(decimal Price)
+        {
+            return Price;
+        }
+        public static decimal GeneraPriceIva(decimal Price,int Iva)
+        {
+             decimal PriceIva = (Price / 100) * (100 + Iva);
+             return PriceIva;
+        }
     }
-
-
-
-
-
-    //Product Book = new Product(1234,"La Nave di Teseo", "Bellissimo libbbro", 17.99, 22);
-
-    //Book.Code = richiama un metodo random; 
-
 
 
 

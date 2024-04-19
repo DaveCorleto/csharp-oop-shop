@@ -24,39 +24,68 @@ namespace csharp_oop_shop
             Console.WriteLine(headphones.Code);
 
             Console.WriteLine("Il prezzo base della Fender Mustang è: ");
-            Console.WriteLine(Product.BasicPrice(guitar.Price));
+            Console.WriteLine(guitar.BasicPrice());
+
             Console.WriteLine("Il prezzo ivato della Fender Mustang è: ");
-            Console.WriteLine(Product.GeneraPriceIva(guitar.Price,guitar.Iva));
+            Console.WriteLine(guitar.GeneraPriceIva(guitar.Price, guitar.Iva));
 
             Console.WriteLine("Proviamo la Funzione Nome esteso: ");
-            Console.WriteLine(Product.GeneraNomeEsteso(guitar.Code, guitar.Name));
-            Console.WriteLine(Product.GeneraNomeEsteso(book.Code, book.Name));
-            Console.WriteLine(Product.GeneraNomeEsteso(headphones.Code, headphones.Name));
+            Console.WriteLine(guitar.GeneraNomeEsteso(guitar.Code, guitar.Name));
+            Console.WriteLine(book.GeneraNomeEsteso(book.Code, book.Name));
+            Console.WriteLine(headphones.GeneraNomeEsteso(headphones.Code, headphones.Name));
+
+
+            Console.WriteLine("Proviamo il metodo per avere il padding a 8 caratteri:");
+            Console.WriteLine(guitar.GetPaddedCode());
+
+            // Bonus: Elenco dei prodotti del negozio
+            Product[] products = new Product[]
+            {
+            book,
+            guitar,
+            headphones
+            };
+
+            Console.WriteLine("Elenco dei prodotti nel negozio:");
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Codice: {product.GetPaddedCode()}, Nome: {product.Name}, Prezzo: {product.Price}, IVA: {product.Iva}");
+            }
         }
     }
 
     public class Product
     {
         private int code;
-        public int Code { 
-            get { return code; }
+        public int Code { get { return code; } }
+
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
-        //private int velocità;
-        //public int Velocità
-        //{
-        //    get
-        //    {
-        //        return velocità;
-        //    }
-        //    set
-        //    {
-        //        velocità = value;
-        //    }
-        //}
-        public string Name;
-        public string Description;
-        public decimal Price;
-        public int Iva;
+
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
+        private decimal price;
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+
+        private int iva;
+        public int Iva
+        {
+            get { return iva; }
+            set { iva = value; }
+        }
 
         public Product(string name, string description, decimal price, int iva)
         {
@@ -73,34 +102,34 @@ namespace csharp_oop_shop
             return random.Next(100000, 999999);
         }
 
-        public static decimal BasicPrice(decimal Price)
+        public decimal BasicPrice()
         {
             return Price;
         }
-        public static decimal GeneraPriceIva(decimal Price,int Iva)
+
+        public decimal GeneraPriceIva(decimal price, int iva)
         {
-             decimal PriceIva = (Price / 100) * (100 + Iva);
-             return PriceIva;
+            decimal priceIva = (price / 100) * (100 + iva);
+            return priceIva;
         }
 
-        public static string GeneraNomeEsteso(int Code, string Name)
+        public string GeneraNomeEsteso(int code, string name)
         {
-            string CodeString = Convert.ToString(Code);
-            string ExtendedName = $"{CodeString} - {Name}";
-            return ExtendedName;
+            string codeString = Convert.ToString(code);
+            string extendedName = $"{codeString} - {name}";
+            return extendedName;
+        }
+        public string GetPaddedCode()
+        {
+            return code.ToString().PadLeft(8, '0');
         }
     }
+}
 
 
 
 
-
-    //Usate opportunamente i livelli di accesso (public, private), i costruttori, i metodi getter e setter ed eventuali altri metodi di “utilità” per fare in modo che:
-    //    Gli altri attributi siano accessibili sia in lettura che in scrittura
-
-    //Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome
-    //    Testate poi i vostri oggetti Prodotto, istanziandoli e provando ad interargirci per testare tutti i metodi che avete previsto.
     //BONUS:
     //- create un metodo che restituisca il codice con un pad left di 0 per arrivare a 8 caratteri(ad esempio codice 91 diventa 00000091, mentre codice 123445567 resta come è)
     //- Usando un array, dichiarate un elenco dei prodotti di un negozio e inseriteci al suo interno qualche prodotto che vi aspettate di trovare nel negozio.Stampate poi l’elenco dei vostri prodotti che avete previsto nel negozio.
-}
+
